@@ -8,12 +8,19 @@
 // 3 buttons can be added using html which each button will link to their forms which are created using JS 
 
 // DATA
+const $container = document.getElementById('container')
+$container.innerHTML =
+`
+    <h2>Choose a story</h2>
+    <button id="mission-statement-button">Mission Statement</button>
+    <button id="lunch-room-button">Lunch Room!</button>
+    <button id="weather-report-button">Weather Report</button>
+`
+
 const $missionStatementButton = document.getElementById('mission-statement-button')
 const $lunchRoomButton = document.getElementById('lunch-room-button')
 const $weatherReportButton = document.getElementById('weather-report-button')
 
-const $container = document.getElementById('container')
-const $oldContainer = $container.innerHTML
 
 // CODE 
 $missionStatementButton.addEventListener('click', function(missionStatementSubmit) {

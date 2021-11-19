@@ -9,12 +9,61 @@
 
 // DATA
 const $container = document.getElementById('container')
+const $container1 = document.getElementById('container1')
+const $container2 = document.getElementById('container2')
+const $container3 = document.getElementById('container3')
+const $containerStory1 = document.getElementById('container-story1')
+const $containerStory2 = document.getElementById('container-story2')
+const $containerStory3 = document.getElementById('container-story3')
+
+
 $container.innerHTML =
 `
     <h2>Choose a story</h2>
     <button id="mission-statement-button">Mission Statement</button>
     <button id="lunch-room-button">Lunch Room!</button>
     <button id="weather-report-button">Weather Report</button>
+`
+$container1.innerHTML =
+`
+    <h2>Provide the following words</h2>
+    <form id="mission-statement-form">
+        <input id="mission-statement-adjective" class="type-text-style" type="text" placeholder="${stories[0].words[0]}">
+        <input id="mission-statement-verb1" class="type-text-style" type="text" placeholder="${stories[0].words[1]}">
+        <input id="mission-statement-verb2" class="type-text-style" type="text" placeholder="${stories[0].words[2]}">
+        <input id="mission-statement-noun1" class="type-text-style" type="text" placeholder="${stories[0].words[3]}">
+        <input id="mission-statement-noun2" class="type-text-style" type="text" placeholder="${stories[0].words[4]}">
+        <input id="mission-statement-noun3" class="type-text-style" type="text" placeholder="${stories[0].words[5]}">
+    </form>
+    <button id="mission-statement-submit">Read Story</button>
+`
+$container2.innerHTML = 
+`
+    <h2>Provide the following words</h2>
+    <form id="lunch-room-form">
+        <input id="lunch-room-animal" class="type-text-style" type="text" placeholder="${stories[1].words[0]}">
+        <input id="lunch-room-adjective1" class="type-text-style" type="text" placeholder="${stories[1].words[1]}">
+        <input id="lunch-room-adjective2" class="type-text-style" type="text" placeholder="${stories[1].words[2]}">
+        <input id="lunch-room-vegetable1" class="type-text-style" type="text" placeholder="${stories[1].words[3]}">
+        <input id="lunch-room-vegetable2" class="type-text-style" type="text" placeholder="${stories[1].words[4]}">
+        <input id="lunch-room-noun" class="type-text-style" type="text" placeholder="${stories[1].words[5]}">
+        <input id="lunch-room-container" class="type-text-style" type="text" placeholder="${stories[1].words[6]}">
+    </form>
+    <button id="lunch-room-submit">Read Story</button>
+`
+$container3.innerHTML = 
+`
+    <h2>Provide the following words</h2>
+    <form id="weather-report-form">
+        <input id="weather-report-adjective1" class="type-text-style" type="text" placeholder="${stories[2].words[0]}">
+        <input id="weather-report-adjective2" class="type-text-style" type="text" placeholder="${stories[2].words[1]}">
+        <input id="weather-report-article-clothing" class="type-text-style" type="text" placeholder="${stories[2].words[2]}">
+        <input id="weather-report-number1" class="type-text-style" type="text" placeholder="${stories[2].words[3]}">
+        <input id="weather-report-number2" class="type-text-style" type="text" placeholder="${stories[2].words[4]}">
+        <input id="weather-report-noun1" class="type-text-style" type="text" placeholder="${stories[2].words[5]}">
+        <input id="weather-report-noun2" class="type-text-style" type="text" placeholder="${stories[2].words[6]}">
+    </form>
+    <button id="weather-report-submit">Read Story</button>
 `
 
 const $missionStatementButton = document.getElementById('mission-statement-button')
@@ -23,22 +72,15 @@ const $weatherReportButton = document.getElementById('weather-report-button')
 
 
 // CODE 
+$container1.setAttribute('style', 'display: none')
+$container2.setAttribute('style', 'display: none')
+$container3.setAttribute('style', 'display: none')
+
 $missionStatementButton.addEventListener('click', function(missionStatementSubmit) {
     missionStatementSubmit.preventDefault()
-    $container.textContent = ''
-    $container.innerHTML = 
-    `
-        <h2>Provide the following words</h2>
-        <form id="mission-statement-form">
-            <input id="mission-statement-adjective" class="type-text-style" type="text" placeholder="${stories[0].words[0]}">
-            <input id="mission-statement-verb1" class="type-text-style" type="text" placeholder="${stories[0].words[1]}">
-            <input id="mission-statement-verb2" class="type-text-style" type="text" placeholder="${stories[0].words[2]}">
-            <input id="mission-statement-noun1" class="type-text-style" type="text" placeholder="${stories[0].words[3]}">
-            <input id="mission-statement-noun2" class="type-text-style" type="text" placeholder="${stories[0].words[4]}">
-            <input id="mission-statement-noun3" class="type-text-style" type="text" placeholder="${stories[0].words[5]}">
-        </form>
-        <button id="mission-statement-submit">Read Story</button>
-    `
+    $container.setAttribute('style', 'display: none')
+    $container1.setAttribute('style', 'display: inline')
+
     const $missionStatementForm = document.getElementById('mission-statement-form')
 
     const $missionStatementAdjective = document.getElementById('mission-statement-adjective')
@@ -47,6 +89,13 @@ $missionStatementButton.addEventListener('click', function(missionStatementSubmi
     const $missionStatementNoun1 = document.getElementById('mission-statement-noun1')
     const $missionStatementNoun2 = document.getElementById('mission-statement-noun2')
     const $missionStatementNoun3 = document.getElementById('mission-statement-noun3')
+
+    $missionStatementAdjective.value = ''
+    $missionStatementVerb1.value = ''
+    $missionStatementVerb2.value = ''
+    $missionStatementNoun1.value = ''
+    $missionStatementNoun2.value = ''
+    $missionStatementNoun3.value = ''
 
     document.getElementById('mission-statement-submit').addEventListener('click', function() {
         const story = stories[0]
@@ -62,8 +111,9 @@ $missionStatementButton.addEventListener('click', function(missionStatementSubmi
         story.output(words)
         console.log(story.output(words))
 
-        $container.textContent = ''
-        $container.innerHTML = 
+        $container1.setAttribute('style', 'display: none')
+        $containerStory1.setAttribute('style', 'display: inline')
+        $containerStory1.innerHTML = 
         `
             <div id="story-div">
                 <h1>Mission Statement</h1>
@@ -73,28 +123,17 @@ $missionStatementButton.addEventListener('click', function(missionStatementSubmi
         `
         
         document.getElementById('go-back-to-start').addEventListener('click', function() {
-            location.reload()
+            $containerStory1.setAttribute('style', 'display: none')
+            $container.setAttribute('style', 'display: inline')
         })
     })
 })
 
 $lunchRoomButton.addEventListener('click', function(lunchRoomSubmit) {
     lunchRoomSubmit.preventDefault()
-    $container.textContent = ''
-    $container.innerHTML = 
-    `
-        <h2>Provide the following words</h2>
-        <form id="lunch-room-form">
-            <input id="lunch-room-animal" class="type-text-style" type="text" placeholder="${stories[1].words[0]}">
-            <input id="lunch-room-adjective1" class="type-text-style" type="text" placeholder="${stories[1].words[1]}">
-            <input id="lunch-room-adjective2" class="type-text-style" type="text" placeholder="${stories[1].words[2]}">
-            <input id="lunch-room-vegetable1" class="type-text-style" type="text" placeholder="${stories[1].words[3]}">
-            <input id="lunch-room-vegetable2" class="type-text-style" type="text" placeholder="${stories[1].words[4]}">
-            <input id="lunch-room-noun" class="type-text-style" type="text" placeholder="${stories[1].words[5]}">
-            <input id="lunch-room-container" class="type-text-style" type="text" placeholder="${stories[1].words[6]}">
-        </form>
-        <button id="lunch-room-submit">Read Story</button>
-    `
+    $container.setAttribute('style', 'display: none')
+    $container2.setAttribute('style', 'display: inline')
+
     const $lunchRoomForm = document.getElementById('lunch-room-form')
 
     const $lunchRoomAnimal = document.getElementById('lunch-room-animal')
@@ -104,6 +143,14 @@ $lunchRoomButton.addEventListener('click', function(lunchRoomSubmit) {
     const $lunchRoomVegetable2 = document.getElementById('lunch-room-vegetable2')
     const $lunchRoomNoun = document.getElementById('lunch-room-noun')
     const $lunchRoomContainer = document.getElementById('lunch-room-container')
+
+    $lunchRoomAnimal.value = ''
+    $lunchRoomAdjective1.value = ''
+    $lunchRoomAdjective2.value = ''
+    $lunchRoomVegetable1.value = ''
+    $lunchRoomVegetable2.value = ''
+    $lunchRoomNoun.value = ''
+    $lunchRoomContainer.value = ''
 
     document.getElementById('lunch-room-submit').addEventListener('click', function() {
         const story = stories[1]
@@ -120,39 +167,29 @@ $lunchRoomButton.addEventListener('click', function(lunchRoomSubmit) {
         story.output(words)
         console.log(story.output(words))
 
-        $container.textContent = ''
-        $container.innerHTML = 
+        $container2.setAttribute('style', 'display: none')
+        $containerStory2.setAttribute('style', 'display: inline')
+        $containerStory2.innerHTML = 
         `
             <div id="story-div">
                 <h1>Lunch Room!</h1>
                 <span>${story.output(words)}</span>
-                <button id="go-back-to-start">Create Another Story</button>
+                <button id="go-back-to-start1">Create Another Story</button>
             </div>
         `
         
-        document.getElementById('go-back-to-start').addEventListener('click', function() {
-            location.reload()
+        document.getElementById('go-back-to-start1').addEventListener('click', function() {
+            $containerStory2.setAttribute('style', 'display: none')
+            $container.setAttribute('style', 'display: inline')
         })
     })
 })
 
 $weatherReportButton.addEventListener('click', function(weatherReportSubmit) {
     weatherReportSubmit.preventDefault()
-    $container.textContent = ''
-    $container.innerHTML = 
-    `
-        <h2>Provide the following words</h2>
-        <form id="weather-report-form">
-            <input id="weather-report-adjective1" class="type-text-style" type="text" placeholder="${stories[2].words[0]}">
-            <input id="weather-report-adjective2" class="type-text-style" type="text" placeholder="${stories[2].words[1]}">
-            <input id="weather-report-article-clothing" class="type-text-style" type="text" placeholder="${stories[2].words[2]}">
-            <input id="weather-report-number1" class="type-text-style" type="text" placeholder="${stories[2].words[3]}">
-            <input id="weather-report-number2" class="type-text-style" type="text" placeholder="${stories[2].words[4]}">
-            <input id="weather-report-noun1" class="type-text-style" type="text" placeholder="${stories[2].words[5]}">
-            <input id="weather-report-noun2" class="type-text-style" type="text" placeholder="${stories[2].words[6]}">
-        </form>
-        <button id="weather-report-submit">Read Story</button>
-    `
+    $container.setAttribute('style', 'display: none')
+    $container3.setAttribute('style', 'display: inline')
+
     const $weatherReportForms = document.getElementById('weather-report-form')
 
     const $weatherReportAdjective1 = document.getElementById('weather-report-adjective1')
@@ -162,6 +199,14 @@ $weatherReportButton.addEventListener('click', function(weatherReportSubmit) {
     const $weatherReportNumber2 = document.getElementById('weather-report-number2')
     const $weatherReportNoun1 = document.getElementById('weather-report-noun1')
     const $weatherReportNoun2 = document.getElementById('weather-report-noun2')
+
+    $weatherReportAdjective1.value = ''
+    $weatherReportAdjective2.value = ''
+    $weatherReportArticleClothing.value = ''
+    $weatherReportNumber1.value = ''
+    $weatherReportNumber2.value = ''
+    $weatherReportNoun1.value = ''
+    $weatherReportNoun2.value = ''
 
     document.getElementById('weather-report-submit').addEventListener('click', function() {
         const story = stories[2]
@@ -178,18 +223,20 @@ $weatherReportButton.addEventListener('click', function(weatherReportSubmit) {
         story.output(words)
         console.log(story.output(words))
 
-        $container.textContent = ''
-        $container.innerHTML = 
+        $container3.setAttribute('style', 'display: none')
+        $containerStory3.setAttribute('style', 'display: inline')
+        $containerStory3.innerHTML = 
         `
             <div id="story-div">
                 <h1>Weather Report</h1>
                 <span>${story.output(words)}</span>
-                <button id="go-back-to-start">Create Another Story</button>
+                <button id="go-back-to-start2">Create Another Story</button>
             </div>
         `
 
-        document.getElementById('go-back-to-start').addEventListener('click', function() {
-            location.reload()
+        document.getElementById('go-back-to-start2').addEventListener('click', function() {
+            $containerStory3.setAttribute('style', 'display: none')
+            $container.setAttribute('style', 'display: inline')
         })
     })
 })

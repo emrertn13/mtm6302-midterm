@@ -46,3 +46,9 @@ button:hover {
 .word {
     text-decoration: underline;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+}
